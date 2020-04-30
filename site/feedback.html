@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Email Us | EIT Hawke's Bay and Tairāwhiti</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/prefixfree.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      
+      $("#feedback_form").submit(function(e) {
+        e.preventDefault();
+        
+        $form = $(this);
+        
+        $.ajax({
+          type: "POST",
+          url:  "https://syxlp76t5c.execute-api.ap-southeast-2.amazonaws.com/Testing/Feedback",
+          data: $form.serialize(),
+          success: function(data) {
+            // alert(data);
+            
+            var container = $("#feedback").find("div.container-fluid");
+            container.empty();
+            container.append("<h2>" + data + "</h2>");
+          },
+          dataType: 'json'
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+<header>
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#featured"><h1>EASTERN INSTITUTE OF TECHNOLOGY | Te Aho a Māui | New Zealand <span class="subhead">Pet Medicine</span></h1></a>
+      </div><!-- navbar-header -->
+	  
+      <div class="collapse navbar-collapse" id="collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="index.html#featured">Home</a></li>
+          <li><a href="index.html#mission">Research</a></li>
+          <li><a href="index.html#services">International</a></li>
+          <li><a href="index.html#staff">Subject Areas</a></li>
+          <li><a href="index.html#testimonials">Student Services</a></li>
+          <li class="active"><a href="feedback.html">Email Us</a></li>
+        </ul>        
+      </div><!-- collapse navbar-collapse -->
+    </div><!-- container -->
+  </nav>
+</header>
+
+<div class="main">
+  <div class="page" id="feedback" style="padding-top:100px;">
+    <div class="container-fluid">
+      <h2>Talk to Us</h2>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 form-container">
+          <p>Please provide your feedback below:</p>
+            <form role="form" method="post" id="feedback_form">
+              <div class="row">
+                <div class="col-sm-12 form-group">
+                  <label>How do you rate your overall experience?</label>
+                  <p>
+                    <label class="radio-inline">
+                      <input type="radio" name="experience" value="bad">
+                      Bad
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="experience" value="average">
+                      Average
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="experience" value="good">
+                      Good
+                    </label>
+                  </p>
+                </div>
+              </div> <!-- Experience row -->
+              
+              <div class="row">
+                <div class="col-sm-12 form-group">
+                  <label for="comments">Comments:</label>
+                  <textarea class="form-control" type="textarea" name="comments" id="comments" placeholder="Your Comments" maxlength="6000" rows="7"></textarea>
+                </div>
+              </div> <!-- Comments row -->
+              
+              <div class="row">
+                <div class="col-sm-6 form-group">
+                  <label for="name">Your Name:</label>
+                  <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="col-sm-6 form-group">
+                  <label for="email">Email:</label>
+                  <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+              </div> <!-- Name and email row -->
+
+              <div class="row">
+                <div class="col-sm-12 form-group">
+                  <button type="submit" class="btn btn-lg btn-warning btn-block">Send Feedback</button>
+                </div>
+              </div> <!-- Submit row -->
+            </form> <!-- Feedback form -->
+            
+            <div id="success_message" style="width:100%; height:100%; display:none; ">
+              <h3>Posted your feedback successfully!</h3>
+            </div> <!-- Success -->
+            
+            <div id="error_message" style="width:100%; height:100%; display:none; ">
+              <h3>Error</h3>
+              Sorry there was an error sending your form.
+            </div> <!-- Error -->
+          </div> <!-- Feedback form -->
+          
+      </div><!-- outer row -->
+    </div><!-- container -->
+  </div><!-- staff page -->
+</div><!-- main -->
+
+<footer>
+  <div class="content container-fluid">
+    <div class="row">
+      <div class="col-sm-6">
+        <p>Contact EIT <span class="phone">0800 22 55 348</span></p>
+		<p>International <span class="phone">+64 6 974 8902</span></p>
+		 
+        <p>Te Aho a Māui NEW ZEALAND</p>    
+      </div><!-- col-sm-6 -->
+      <div class="col-sm-6">
+        <nav class="navbar navbar-default" role="navigation">
+          <ul class="nav navbar-nav navbar-right">
+
+          </ul>
+        </nav>        
+      </div><!-- col-sm-6 -->
+    </div><!-- row -->
+  </div><!-- content container -->
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="js/myscript.js"></script>
+</body>
+</html>
